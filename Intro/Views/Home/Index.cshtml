@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Intro.Models.Product>
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>@ViewBag.Isım Hoşgeldin</p>
+@if (ViewBag.Saat < 12)
+{
+    <p>Günaydın</p>
+}
+else
+{
+    <p>İyi günler</p>
+}
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">@product.Vendor</h3>
+                </div>
+                <div class="card-body">
+                    <img class="card-img-top" src="@product.ImageUrl" />
+                </div>
+
+                <p>@product.Description</p>
+                <img src="@product.ImageUrl" alt="@product.Description" />
+                <button class="btn btn-success">Sepete Ekle</button>
+            </div>
+        </div>
+    }
+</div>
+
+
+@*asp-route-id=""*@
+<p>
+    Size Bir Davetimiz var.Formu doldurmak için <a asp-action="Cevap" asp-controller="Home">Tıklayınız</a>.
+</p>
+
