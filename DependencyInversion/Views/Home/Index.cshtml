@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>@ViewBag.Result</p>
+</div>
+
+
+<p>
+    Transient : @ViewBag.Transient
+</p>
+<p>
+    Scoped:@ViewBag.Scoped
+</p>
+<p>
+    Singleton : @ViewBag.Singleton
+</p>
+<hr />
+<h1>Servis değerleri</h1>
+<p>
+    Transient : @ViewBag.STransient
+</p>
+<p>
+    Scoped:@ViewBag.SScoped
+</p>
+<p>
+    Singleton : @ViewBag.SSingleton
+</p>
