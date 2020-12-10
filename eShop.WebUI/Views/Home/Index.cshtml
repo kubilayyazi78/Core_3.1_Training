@@ -22,7 +22,7 @@
     {
         isActive = i == Model.PagingInfo.CurrentPage ? "active" : "";
         <li class="page-item @isActive">
-            <a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+            <a class="page-link" asp-action="Index" asp-route-page="@i" asp-route-category="@Model.CategoryId">@i</a>
         </li>
     }
 </ul>

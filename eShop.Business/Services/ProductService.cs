@@ -18,5 +18,10 @@ namespace eShop.Business.Services
         {
             return productRepository.GetAll();
         }
+
+        public IEnumerable<Product> GetProductsByCategoryId(int categoryId)
+        {
+            return productRepository.GetWithCriteria(x => x.CategoryId == categoryId);
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace eShop.Business.Services
     {
         IEnumerable<Product> GetProducts();
 
+        IEnumerable<Product> GetProductsByCategoryId(int categoryId);
+
     }
 }

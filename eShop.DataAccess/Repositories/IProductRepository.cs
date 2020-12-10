@@ -7,5 +7,6 @@ namespace eShop.DataAccess.Repositories
 {
    public interface IProductRepository : IRepository<Product>
     {
+        //IList<Product> GetProductsByCategoryId(int categoryId);
     }
 }

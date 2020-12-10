@@ -13,7 +13,7 @@ namespace eShop.Domain
 
         public decimal Price { get; set; }
 
-        public float Discount { get; set; }
+        public double Discount { get; set; }
 
         public string PitcureUrl { get; set; }
 

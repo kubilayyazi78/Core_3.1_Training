@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace eShop.DataAccess.Repositories
@@ -9,6 +10,7 @@ namespace eShop.DataAccess.Repositories
         T Add(T entity);
         IList<T> GetAll();
 
+        IList<T> GetWithCriteria(Expression<Func<T, bool>> expression);
 
     }
 }

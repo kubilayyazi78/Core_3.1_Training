@@ -1,4 +1,5 @@
 ﻿using eShop.Business.Services;
+using eShop.Domain;
 using eShop.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -21,15 +22,27 @@ namespace eShop.WebUI.Controllers
             //productService.GetProducts();
             _logger = logger;
             this.productService = productService;
-
+           
         }
         public int PageSize { get; set; } = 3;
-        public IActionResult Index(int page = 1)
+        public IActionResult Index(int page = 1, int category = 0)
         {
-            var products = productService.GetProducts();
+            //var products = productService.GetProducts();
+
+            //var product = productService.GetProductsByCategoryId(category==0 || );
+
+            IEnumerable<Product> products = null;
+            if (category == 0)
+            {
+                products = productService.GetProducts();
+            }
+            else
+            {
+                products = productService.GetProductsByCategoryId(category);
+            }
 
             var pagingProducts = products.OrderBy(x => x.Id)
-                .Skip((page-1)*PageSize)
+                .Skip((page - 1) * PageSize)
                 .Take(PageSize);
 
 
@@ -43,13 +56,14 @@ namespace eShop.WebUI.Controllers
             ProductViewModel viewModel = new ProductViewModel
             {
                 PagingInfo = pagingInfo,
-                Products = pagingProducts
+                Products = pagingProducts,
+                 CategoryId=category
             };
 
 
             //var totalProductCount = products.Count();
-           // var totalPages = (int)Math.Ceiling((decimal)totalProductCount / PageSize);
-         //   ViewBag.Pages = totalPages;
+            // var totalPages = (int)Math.Ceiling((decimal)totalProductCount / PageSize);
+            //   ViewBag.Pages = totalPages;
 
             return View(viewModel);
         }

@@ -1,8 +1,10 @@
 using eShop.Business.Services;
+using eShop.DataAccess.Data;
 using eShop.DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,8 +29,16 @@ namespace eShop.WebUI
         {
             services.AddControllersWithViews();
 
+
+            services.AddDbContext<AcibademShopContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("db")));
+
             services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<IProductRepository, FakeProductRepository>();
+            services.AddScoped<IProductRepository, EFProductRepository>();
+
+            services.AddScoped<ICategoryService, CategoryService>();
+            //  services.AddScoped<ICategoryRepository, FakeCategoryRepository>();
+            services.AddScoped<ICategoryRepository, EFCategoryRepository>();
+
 
         }
 

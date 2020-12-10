@@ -1,6 +1,8 @@
 ﻿using eShop.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace eShop.DataAccess.Repositories
@@ -12,9 +14,7 @@ namespace eShop.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        public IList<Product> GetAll()
-        {
-            return new List<Product>
+        private List<Product> products = new List<Product>
            {
                new Product
                {
@@ -32,7 +32,7 @@ namespace eShop.DataAccess.Repositories
                    Id=2,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
                     Price=6999,
-                    CategoryId=1
+                    CategoryId=2
                },
                  new Product
                {
@@ -41,7 +41,7 @@ namespace eShop.DataAccess.Repositories
                    Id=3,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
                     Price=6999,
-                    CategoryId=1
+                    CategoryId=3
                },
                    new Product
                {
@@ -59,7 +59,7 @@ namespace eShop.DataAccess.Repositories
                    Id=5,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
                     Price=6999,
-                    CategoryId=4
+                    CategoryId=2
                },
                            new Product
                {
@@ -68,7 +68,7 @@ namespace eShop.DataAccess.Repositories
                    Id=6,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
                     Price=6999,
-                    CategoryId=4
+                    CategoryId=3
                },
                                new Product
                {
@@ -77,7 +77,7 @@ namespace eShop.DataAccess.Repositories
                    Id=7,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
                     Price=6999,
-                    CategoryId=4
+                    CategoryId=2
                },
                                                        new Product
                {
@@ -86,7 +86,7 @@ namespace eShop.DataAccess.Repositories
                    Id=8,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
                     Price=6999,
-                    CategoryId=4
+                    CategoryId=3
                },
                                                                                new Product
                {
@@ -95,7 +95,7 @@ namespace eShop.DataAccess.Repositories
                    Id=9,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
                     Price=6999,
-                    CategoryId=4
+                    CategoryId=1
                },
                                                                                                        new Product
                {
@@ -104,9 +104,18 @@ namespace eShop.DataAccess.Repositories
                    Id=10,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
                     Price=6999,
-                    CategoryId=4
+                    CategoryId=2
                }
            };
+        public IList<Product> GetAll()
+        {
+
+            return products;
+        }
+
+        public IList<Product> GetWithCriteria(Expression<Func<Product, bool>> expression)
+        {
+            return products.AsQueryable().Where(expression).ToList();
         }
     }
 }
