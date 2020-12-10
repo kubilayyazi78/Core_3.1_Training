@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Product>
+﻿@model ProductViewModel
 @{
     ViewData["Title"] = "Home Page";
     var count = 0;
+    var isActive = "";
 }
-
 <div class="row">
-    @foreach (var product in Model)
+    @foreach (var product in Model.Products)
 
     {
         if (count != 0 && count % 3 == 0)
@@ -13,25 +13,26 @@
         @:</div>
         @:<div class="row">
         }
-        <partial name="_ProductSummary" model="@product"/>
+        <partial name="_ProductSummary" model="@product" />
         count++;
     }
 </div>
-          
-          <div class="pagination">
-              @for (int i = 0; i < length; i++)
-              {
-                  <a asp-controller="Home" asp-action="Index" asp-route-page="@i">@i</a>
-              }
-          </div>
-
+<ul class="pagination">
+    @for (int i = 1; i <= Model.PagingInfo.TotalPageCount; i++)
+    {
+        isActive = i == Model.PagingInfo.CurrentPage ? "active" : "";
+        <li class="page-item @isActive">
+            <a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+        </li>
+    }
+</ul>
 @section Scripts{
     <script>
         $(document).ready(function () {
 
             $('.sepet').on('click', function () {
                 let name = $(this).data('name');
-                alertify.success(name+' Sepete Eklendi');
+                alertify.success(name + ' Sepete Eklendi');
 
             })
 

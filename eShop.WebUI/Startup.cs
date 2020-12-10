@@ -55,8 +55,16 @@ namespace eShop.WebUI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                 name: null,
+                 pattern: "Sayfa{page:int}",
+                 defaults: new { controller = "Home", action = "Index", page = 1 });
+
+                endpoints.MapControllerRoute(
+                           name: "default",
+                           pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+
             });
         }
     }

@@ -18,7 +18,7 @@ namespace eShop.DataAccess.Repositories
            {
                new Product
                {
-                   Name="Acer",
+                   Name="A",
                    Discount=0.30f,
                    Id=1,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
@@ -27,7 +27,7 @@ namespace eShop.DataAccess.Repositories
                },
                 new Product
                {
-                   Name="Acer",
+                   Name="B",
                    Discount=0.30f,
                    Id=2,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
@@ -36,7 +36,7 @@ namespace eShop.DataAccess.Repositories
                },
                  new Product
                {
-                   Name="Acer",
+                   Name="C",
                    Discount=0.30f,
                    Id=3,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
@@ -45,7 +45,7 @@ namespace eShop.DataAccess.Repositories
                },
                    new Product
                {
-                   Name="Acer",
+                   Name="D",
                    Discount=0.30f,
                    Id=4,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
@@ -54,7 +54,7 @@ namespace eShop.DataAccess.Repositories
                },
                        new Product
                {
-                   Name="Acer",
+                   Name="E",
                    Discount=0.30f,
                    Id=5,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
@@ -63,7 +63,7 @@ namespace eShop.DataAccess.Repositories
                },
                            new Product
                {
-                   Name="Acer",
+                   Name="F",
                    Discount=0.30f,
                    Id=6,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
@@ -72,9 +72,36 @@ namespace eShop.DataAccess.Repositories
                },
                                new Product
                {
-                   Name="Acer",
+                   Name="G",
                    Discount=0.30f,
                    Id=7,
+                   PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
+                    Price=6999,
+                    CategoryId=4
+               },
+                                                       new Product
+               {
+                   Name="H",
+                   Discount=0.30f,
+                   Id=8,
+                   PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
+                    Price=6999,
+                    CategoryId=4
+               },
+                                                                               new Product
+               {
+                   Name="L",
+                   Discount=0.30f,
+                   Id=9,
+                   PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
+                    Price=6999,
+                    CategoryId=4
+               },
+                                                                                                       new Product
+               {
+                   Name="M",
+                   Discount=0.30f,
+                   Id=10,
                    PitcureUrl="https://cdn.dsmcdn.com//ty26/product/media/images/20201121/8/29616029/109201654/1/1_org.jpg",
                     Price=6999,
                     CategoryId=4

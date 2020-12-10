@@ -15,7 +15,7 @@ namespace eShop.WebUI.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService productService;
 
-        public HomeController(ILogger<HomeController> logger,IProductService productService)
+        public HomeController(ILogger<HomeController> logger, IProductService productService)
         {
             //ProductService productService = new ProductService();
             //productService.GetProducts();
@@ -23,11 +23,35 @@ namespace eShop.WebUI.Controllers
             this.productService = productService;
 
         }
-
-        public IActionResult Index(int page=1)
+        public int PageSize { get; set; } = 3;
+        public IActionResult Index(int page = 1)
         {
             var products = productService.GetProducts();
-            return View(products);
+
+            var pagingProducts = products.OrderBy(x => x.Id)
+                .Skip((page-1)*PageSize)
+                .Take(PageSize);
+
+
+            PagingInfo pagingInfo = new PagingInfo
+            {
+                CurrentPage = page,
+                ItemsCount = products.Count(),
+                PageSize = this.PageSize
+            };
+
+            ProductViewModel viewModel = new ProductViewModel
+            {
+                PagingInfo = pagingInfo,
+                Products = pagingProducts
+            };
+
+
+            //var totalProductCount = products.Count();
+           // var totalPages = (int)Math.Ceiling((decimal)totalProductCount / PageSize);
+         //   ViewBag.Pages = totalPages;
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
