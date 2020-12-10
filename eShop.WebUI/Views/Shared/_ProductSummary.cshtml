@@ -1,0 +1,12 @@
+﻿@model Product
+<div class="col-4">
+    <div class="card">
+        <img src="@Model.PitcureUrl" class="card-img-top" alt="@Model.Name">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">@Model.Price</p>
+            <p class="card-text">@(Model.Price*(decimal)(1- Model.Discount))</p>
+            <button class="btn btn-success sepet" data-name="@Model.Name">Sepete Ekle</button>
+        </div>
+    </div>
+</div>
