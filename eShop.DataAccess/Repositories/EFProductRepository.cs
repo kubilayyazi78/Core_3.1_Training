@@ -25,6 +25,11 @@ namespace eShop.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
+        public Product Get(int id)
+        {
+            return acibademShopContext.Products.Find(id);
+        }
+
         public IList<Product> GetAll()
         {
             return acibademShopContext.Products.ToList();

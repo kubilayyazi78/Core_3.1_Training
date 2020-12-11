@@ -12,5 +12,7 @@ namespace eShop.DataAccess.Repositories
 
         IList<T> GetWithCriteria(Expression<Func<T, bool>> expression);
 
+        T Get(int id);
+
     }
 }

@@ -39,6 +39,8 @@ namespace eShop.WebUI
             //  services.AddScoped<ICategoryRepository, FakeCategoryRepository>();
             services.AddScoped<ICategoryRepository, EFCategoryRepository>();
 
+            //.netcoreda istenmeyen bir yapý ekli olmaz Session kullanacaksak startupta belirtmeliyiz.
+            services.AddSession(so => { so.IdleTimeout = TimeSpan.FromMinutes(10); });
 
         }
 
@@ -62,6 +64,8 @@ namespace eShop.WebUI
 
             app.UseAuthorization();
 
+
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

@@ -117,5 +117,10 @@ namespace eShop.DataAccess.Repositories
         {
             return products.AsQueryable().Where(expression).ToList();
         }
+
+        public Product Get(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,7 +6,7 @@
             <h5 class="card-title">@Model.Name</h5>
             <p class="card-text">@Model.Price</p>
             <p class="card-text">@(Model.Price*(decimal)(1- Model.Discount))</p>
-            <button class="btn btn-success sepet" data-name="@Model.Name">Sepete Ekle</button>
+            <button class="btn btn-success sepet" data-name="@Model.Name" data-id="@Model.Id">Sepete Ekle</button>
         </div>
     </div>
 </div>

@@ -11,5 +11,7 @@ namespace eShop.Business.Services
 
         IEnumerable<Product> GetProductsByCategoryId(int categoryId);
 
+        Product GetProductById(int id);
+
     }
 }

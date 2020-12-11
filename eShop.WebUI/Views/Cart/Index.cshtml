@@ -1,0 +1,37 @@
+﻿@model CartList
+
+@if (Model.List.Count == 0)
+{
+    <div class="alert alert-danger">Sepetiniz Boş</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Adet</th>
+                <th>Fiyat</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cartLine in Model.List)
+            {
+                <tr>
+                    <td>@cartLine.Product.Name</td>
+                    <td>@cartLine.Quantity</td>
+                    <td>@cartLine.Product.Price TL</td>
+                    <td>@(cartLine.Product.Price*cartLine.Quantity)</td>
+                    <td><button class="btn btn-danger">Sil</button></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">Toplam Ödenecek Tutar : @Model.TotalPrice() TL</td>
+            </tr>
+        </tfoot>
+    </table>
+}

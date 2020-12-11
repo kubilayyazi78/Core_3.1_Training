@@ -13,6 +13,11 @@ namespace eShop.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
+        public Category Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IList<Category> GetAll()
         {
             return new List<Category>

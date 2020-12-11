@@ -14,6 +14,12 @@ namespace eShop.Business.Services
         {
             this.productRepository = productRepository;
         }
+
+        public Product GetProductById(int id)
+        {
+            return productRepository.Get(id);
+        }
+
         public IEnumerable<Product> GetProducts()
         {
             return productRepository.GetAll();

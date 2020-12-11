@@ -32,8 +32,18 @@
 
             $('.sepet').on('click', function () {
                 let name = $(this).data('name');
-              //  alertify.success(name + ' Sepete Eklendi');
-
+                let pId = $(this).data('id');
+                //  alertify.success(name + ' Sepete Eklendi');
+                $.ajax({
+                    url: 'Cart/AddToCart?id=' + pId,
+                    type: 'GET',
+                    success: function (data) {
+                        alertify.success(data + ' sepete eklendi');
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
             })
 
         })
