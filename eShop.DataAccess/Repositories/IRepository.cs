@@ -14,5 +14,7 @@ namespace eShop.DataAccess.Repositories
 
         T Get(int id);
 
+        T Update(T entity);
+
     }
 }

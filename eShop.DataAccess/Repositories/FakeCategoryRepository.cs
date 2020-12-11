@@ -44,5 +44,10 @@ namespace eShop.DataAccess.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Category Update(Category entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

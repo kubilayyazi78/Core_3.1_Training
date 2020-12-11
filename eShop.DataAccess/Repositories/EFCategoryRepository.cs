@@ -36,5 +36,10 @@ namespace eShop.DataAccess.Repositories
 
             return acibademShopContext.Categories.Where(expression).ToList();
         }
+
+        public Category Update(Category entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

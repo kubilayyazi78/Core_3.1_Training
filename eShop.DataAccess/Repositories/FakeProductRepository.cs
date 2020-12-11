@@ -122,5 +122,10 @@ namespace eShop.DataAccess.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Product Update(Product entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -29,5 +29,10 @@ namespace eShop.Business.Services
         {
             return productRepository.GetWithCriteria(x => x.CategoryId == categoryId);
         }
+
+        public Product UpdateProduct(Product product)
+        {
+            return productRepository.Update(product);
+        }
     }
 }

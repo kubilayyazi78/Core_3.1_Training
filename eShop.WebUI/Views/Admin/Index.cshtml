@@ -1,0 +1,133 @@
+﻿@model IEnumerable<eShop.Domain.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PitcureUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PitcureUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    <button class="btn btn-primary edit" data-id="@item.Id">Güncelle</button> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="edit">
+                Deneme
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary ok">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            let id;
+            $('.edit').on('click', function () {
+                id = $(this).data('id');
+                $.get("/Admin/Edit/" + id, function (data) {
+                    $('#edit').html(data);
+                    $('#staticBackdrop').modal('show');
+                });
+            });
+
+
+            $('.ok').on('click', function () {
+
+                let gonderilecekData = {
+                    Id: id,
+                    Name: $('#Name').val(),
+                    Price: $('#Price').val(),
+                    Discount: $('#Discount').val(),
+                    PitcureUrl: $('#PitcureUrl').val(),
+                    CategoryId: $('#CategoryId').val()
+                };
+
+                console.log(gonderilecekData);
+
+                $.ajax({
+
+                    url: '/Admin/Edit',
+                    type: 'POST',
+                    data: gonderilecekData,
+                    dataType: 'JSON',
+                    success: function (data) {
+                        if (data == 'OK') {
+                            $('#staticBackdrop').modal('hide');
+                            alertify.alert('Ürün güncellendi', function () {
+                                location = location;
+                            });
+                        }
+                    },
+                    error: function (hata) {
+
+                    }
+
+                })
+
+            });
+        });
+
+
+
+    </script>
+}

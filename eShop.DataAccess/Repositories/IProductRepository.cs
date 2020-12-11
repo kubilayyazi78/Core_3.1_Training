@@ -5,8 +5,9 @@ using System.Text;
 
 namespace eShop.DataAccess.Repositories
 {
-   public interface IProductRepository : IRepository<Product>
+    public interface IProductRepository : IRepository<Product>
     {
         //IList<Product> GetProductsByCategoryId(int categoryId);
+        
     }
 }
