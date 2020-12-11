@@ -67,7 +67,7 @@ namespace eShop.WebUI.Controllers
 
             return View(viewModel);
         }
-
+        
         public IActionResult Privacy()
         {
             return View();

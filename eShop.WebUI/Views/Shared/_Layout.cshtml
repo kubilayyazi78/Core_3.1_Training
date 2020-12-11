@@ -28,6 +28,13 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Cart" asp-action="Index">Sepetim</a>
                         </li>
+                        <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <p>Hoşgeldin @User.Identity.Name</p>
+                                <a asp-controller="User" asp-action="LogOut" class="nav-link">Çıkış Yap</a>
+                            }
+                        </li>
                     </ul>
 
                 </div>

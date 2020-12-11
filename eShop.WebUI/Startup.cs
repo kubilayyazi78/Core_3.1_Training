@@ -1,6 +1,7 @@
 using eShop.Business.Services;
 using eShop.DataAccess.Data;
 using eShop.DataAccess.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,8 +40,15 @@ namespace eShop.WebUI
             //  services.AddScoped<ICategoryRepository, FakeCategoryRepository>();
             services.AddScoped<ICategoryRepository, EFCategoryRepository>();
 
+
+            services.AddScoped<IUserService, UserService>();
             //.netcoreda istenmeyen bir yapý ekli olmaz Session kullanacaksak startupta belirtmeliyiz.
             services.AddSession(so => { so.IdleTimeout = TimeSpan.FromMinutes(10); });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opt =>
+            {
+                opt.LoginPath = "/User/Login";//Login deðilse yönlendirelecek yer.
+            });
 
         }
 
@@ -62,7 +70,9 @@ namespace eShop.WebUI
 
             app.UseRouting();
 
-            app.UseAuthorization();
+
+            app.UseAuthentication();//kimlik 
+            app.UseAuthorization();//yetki
 
 
             app.UseSession();

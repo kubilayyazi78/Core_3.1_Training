@@ -110,6 +110,9 @@
                     type: 'POST',
                     data: gonderilecekData,
                     dataType: 'JSON',
+                    //    headers: {
+                    //      AntiForgeryToken:'xx'
+                    // },
                     success: function (data) {
                         if (data == 'OK') {
                             $('#staticBackdrop').modal('hide');
