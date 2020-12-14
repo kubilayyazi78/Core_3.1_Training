@@ -20,7 +20,7 @@ namespace eShop.Business.Services
             {
                 return new List<Users>
                 {
-                    new Users { UserName="kubilay", Password ="yazi"}
+                    new Users { UserName="kubilay", Password ="yazi", Role="Admin"}
                 };
             }
         }

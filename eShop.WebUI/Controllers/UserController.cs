@@ -15,48 +15,41 @@ namespace eShop.WebUI.Controllers
     public class UserController : Controller
     {
         private IUserService userService;
-        private string returnUrl;
 
         public UserController(IUserService userService)
         {
             this.userService = userService;
-
         }
-        public IActionResult Index()
+        public IActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(UserLoginModel loginModel)
+        public async Task<IActionResult> Login(UserLoginModel loginModel, string returnUrl)
         {
-            Users users = userService.isValidUser(loginModel.UserName, loginModel.Password);
-
-            if (users != null)
+            Users user = userService.isValidUser(loginModel.UserName, loginModel.Password);
+            if (user != null)
             {
                 List<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name, users.UserName));
-                claims.Add(new Claim(ClaimTypes.Role, users.Role));
+                claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+                claims.Add(new Claim(ClaimTypes.Role, user.Role));
 
                 ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-
                 if (Url.IsLocalUrl(returnUrl))
                 {
                     return LocalRedirect(returnUrl);
                 }
             }
-
-
             return View();
         }
 
-        public async Task<IActionResult> LogOut()
+        public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-
             return RedirectToAction(nameof(Index), "Home");
         }
     }

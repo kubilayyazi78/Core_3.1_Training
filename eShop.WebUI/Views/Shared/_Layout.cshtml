@@ -31,8 +31,8 @@
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <p>Hoşgeldin @User.Identity.Name</p>
-                                <a asp-controller="User" asp-action="LogOut" class="nav-link">Çıkış Yap</a>
+                                <p class="nav-link">Hoşgeldin @User.Identity.Name</p>
+                                <a asp-controller="user" asp-action="logout" class="nav-link">Çıkış yap</a>
                             }
                         </li>
                     </ul>
